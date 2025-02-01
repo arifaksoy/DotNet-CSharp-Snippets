@@ -78,7 +78,3 @@ animal.UpdateAge();   // ✗ Cannot access private method
 2. Open the solution in your preferred IDE
 3. Build and run the project
 4. Observe the console output demonstrating various access modifier behaviors
-
-## License
-
-This project is available under the MIT License. 
