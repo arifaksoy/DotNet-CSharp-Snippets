@@ -1,6 +1,6 @@
 # Abstract Classes vs Interfaces in C#
 
-## Abstract Classes
+## Abstract Classes (is a)
 
 Abstract classes in C# serve as base classes that cannot be instantiated on their own. They are used to define a common base with shared functionality for derived classes.
 
@@ -25,7 +25,7 @@ Abstract classes in C# serve as base classes that cannot be instantiated on thei
 
 4. **Access Modifiers**: Can have different access modifiers (public, private, protected)
 
-## Interfaces
+## Interfaces (can do)
 
 Interfaces define a contract that implementing classes must follow. They only declare the members that the implementing classes must implement.
 
