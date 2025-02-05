@@ -10,10 +10,8 @@ public abstract class Animal
         Name = name;
     }
 
-    public virtual void Run()
-    {
-        Console.WriteLine($"{Name} is running.");
-    }
+    public abstract void Run();
+    
 
     public void Sleep()
     {
@@ -40,6 +38,21 @@ public class Dog : Animal
     }
 }
 
+public class Bird : Dog
+{
+    public Bird(string name) : base(name) { }
+
+    public override void MakeSound()
+    {
+        Console.WriteLine($"{Name} says: Woof!");
+    }
+
+    //public override void Run()
+    //{
+    //    Console.WriteLine("bird is running.");
+    //}
+}
+
 // Cat class, derived from Animal class
 public class Cat : Animal
 {
@@ -48,6 +61,10 @@ public class Cat : Animal
     public override void MakeSound()
     {
         Console.WriteLine($"{Name} says: Meow!");
+    }
+    public override void Run()
+    {
+       Console.WriteLine("cat is running");
     }
 }
 
@@ -100,6 +117,10 @@ class Program
         Console.WriteLine("\nUsing interfaces:");
         dogWithInterface.MakeSound();
         catWithInterface.MakeSound();
+
+        var bird = new Bird("twity");
+
+        bird.Run();
 
 
 
