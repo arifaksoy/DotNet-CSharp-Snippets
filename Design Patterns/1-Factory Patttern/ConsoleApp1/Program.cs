@@ -8,6 +8,8 @@ mobile.ApplyPlatformSpecificLogic();
 mobile.StartPayment(PaymentType.Credit);
 Console.WriteLine("mobile payment finished successfully");
 
+Console.WriteLine("---------------------------------------------------------------------------");
+
 web.ApplyPlatformSpecificLogic();
 web.StartPayment(PaymentType.Credit);
 Console.WriteLine("web payment finished successfully");
@@ -51,7 +53,7 @@ public class PayPalPayment : IPayment
     }
 }
 
-public class CryptoPayment : IPayment
+public class CryptoPayment  : IPayment
 {
     public void GetInfo()
     {
@@ -101,7 +103,6 @@ public class MobileUI : PaymentFactory
         Console.WriteLine("Mobile verification code (OTP) is sent.");
     }
 }
-
 public class WebUI : PaymentFactory
 {
     public override IPayment CreatePayment(PaymentType paymentType)
