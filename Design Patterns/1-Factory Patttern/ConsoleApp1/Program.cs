@@ -1,129 +1,54 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
 
-
-var mobile = new MobileUI();
-var web = new WebUI();
-
-mobile.ApplyPlatformSpecificLogic();
-mobile.StartPayment(PaymentType.Credit);
-Console.WriteLine("mobile payment finished successfully");
-
-Console.WriteLine("---------------------------------------------------------------------------");
-
-web.ApplyPlatformSpecificLogic();
-web.StartPayment(PaymentType.Credit);
-Console.WriteLine("web payment finished successfully");
-
-
-public enum PaymentType
+public class Database
 {
-    Credit,
-    Paypal,
-    Crypto
-}
-public interface IPayment
-{
-    void GetInfo();
-    abstract void PaymentProcess();
-}
+    // Singleton örneğini saklamak için alan statik olarak tanımlanmalıdır
+    private static Database instance;
 
-public class CreditCardPayment : IPayment
-{
-    public void GetInfo()
+    // Singleton'ın yapıcısı her zaman özel olmalıdır, böylece `new` operatörü ile doğrudan nesne oluşturulamaz
+    private Database()
     {
-        Console.WriteLine("Credit Card info is gotten...");
+        // Veritabanı sunucusuna bağlantı gibi bazı başlatma kodları.
+        Console.WriteLine("Veritabanına bağlanıldı.");
     }
 
-    public void PaymentProcess() 
+    // Singleton örneğine erişimi kontrol eden statik yöntem
+    public static Database GetInstance()
     {
-        Console.WriteLine("Credit Card payment is processing");
-    }
-}
-
-public class PayPalPayment : IPayment
-{
-    public void GetInfo()
-    {
-        Console.WriteLine("paypal info is gotten...");
-    }
-
-    public void PaymentProcess()
-    {
-        Console.WriteLine("paypal payment is processing");
-    }
-}
-
-public class CryptoPayment  : IPayment
-{
-    public void GetInfo()
-    {
-        Console.WriteLine("Crypto info is gotten...");
-    }
-
-    public void PaymentProcess()
-    {
-        Console.WriteLine("Crypto payment is processing");
-    }
-}
-
-public abstract class PaymentFactory
-{
-    public abstract IPayment CreatePayment(PaymentType paymentType);
-
-    public abstract void ApplyPlatformSpecificLogic();
-
-    public IPayment StartPayment(PaymentType paymentType)
-    {
-       IPayment payment = CreatePayment(paymentType);
-        payment.GetInfo();
-        payment.PaymentProcess();
-        return payment;
-    }
-}
-
-public class MobileUI : PaymentFactory
-{
-    public override IPayment CreatePayment(PaymentType paymentType)
-    {
-        switch (paymentType)
+        // Eğer örnek null ise, thread kilidi almak için
+        if (instance == null)
         {
-            case PaymentType.Credit:
-                return new CreditCardPayment();
-            case PaymentType.Crypto: 
-                return new CryptoPayment();
-            case PaymentType.Paypal: 
-                return new PayPalPayment();    
-            default:
-                throw new NotImplementedException();
-        };
+            lock (typeof(Database))  // Thread kilidi al
+            {
+                // Örneğin başka bir thread tarafından başlatılmadığından emin ol
+                if (instance == null)
+                {
+                    instance = new Database();  // Örneği başlat
+                }
+            }
+        }
+        return instance;
     }
 
-    public override void ApplyPlatformSpecificLogic()
+    // Singleton örneği üzerinde iş mantığını çalıştırma
+    public void Query(string sql)
     {
-        Console.WriteLine("Mobile verification code (OTP) is sent.");
+        // Bir uygulamanın tüm veritabanı sorguları bu yöntemle yapılır.
+        // Burada throttling veya caching mantığı ekleyebilirsiniz.
+        Console.WriteLine($"Sorgu çalıştırılıyor: {sql}");
     }
 }
-public class WebUI : PaymentFactory
+
+public class Application
 {
-    public override IPayment CreatePayment(PaymentType paymentType)
+    public static void Main()
     {
-        switch (paymentType)
-        {
-            case PaymentType.Credit:
-                return new CreditCardPayment();
-            case PaymentType.Crypto:
-                return new CryptoPayment();
-            case PaymentType.Paypal:
-                return new PayPalPayment();
-            default:
-                throw new NotImplementedException();
-        };
-    }
+        // Singleton örneğine erişim
+        Database foo = Database.GetInstance();
+        foo.Query("SELECT * FROM Users");
 
-    public override void ApplyPlatformSpecificLogic()
-    {
-        Console.WriteLine("Browser verification is applied.");
+        // `bar` değişkeni `foo` ile aynı nesneyi tutacaktır
+        Database bar = Database.GetInstance();
+        bar.Query("SELECT * FROM Products");
     }
 }
-
-
