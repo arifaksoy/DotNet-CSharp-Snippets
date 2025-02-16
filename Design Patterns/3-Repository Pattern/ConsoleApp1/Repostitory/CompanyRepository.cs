@@ -34,9 +34,9 @@ namespace RepositoryPattern.Repostitory
             return _context.Company;
         }
 
-        public Company GetById(int id)
+        public async Task<Company> GetById(int id)
         {
-            return _context.Company.Find(id);
+            return await _context.Company.FindAsync(id);
         }
 
         public async Task Update(Company entity)
