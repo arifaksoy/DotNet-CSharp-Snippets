@@ -7,7 +7,7 @@ var discountedPrice = PriceCalculator.CalculateDisCountedPrice(mybook);
 Console.WriteLine(discountedPrice);
 
 
-public class NonSingleResponsiblePrincibleCompany
+public class NonSingleResponsiblePrincibleBook
 {
     public string Title { get; set; }
     public string Author { get; set; }
