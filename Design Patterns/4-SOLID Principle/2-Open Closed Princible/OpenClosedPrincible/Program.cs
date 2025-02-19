@@ -40,7 +40,7 @@ public interface IEmployee
     void GetEmployeeInfo();    
 }
 
-public class Manager :IEmployee
+public class Manager : IEmployee
 {
     public void GetEmployeeInfo()
     {
