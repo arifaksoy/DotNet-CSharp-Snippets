@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionHandling", "..\Exc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preconditions", "..\Preconditions\Preconditions.csproj", "{28C70EF4-E771-4523-81AF-67FC7BB4EBCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postconditions", "..\Postconditions\Postconditions.csproj", "{B95D5F7D-EF04-46CD-B9C7-5C6C844441D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invariants", "..\Invariants\Invariants.csproj", "{134F2C89-5A5B-4E6D-B565-52FE4A17F783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{28C70EF4-E771-4523-81AF-67FC7BB4EBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28C70EF4-E771-4523-81AF-67FC7BB4EBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C70EF4-E771-4523-81AF-67FC7BB4EBCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95D5F7D-EF04-46CD-B9C7-5C6C844441D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95D5F7D-EF04-46CD-B9C7-5C6C844441D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95D5F7D-EF04-46CD-B9C7-5C6C844441D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95D5F7D-EF04-46CD-B9C7-5C6C844441D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134F2C89-5A5B-4E6D-B565-52FE4A17F783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134F2C89-5A5B-4E6D-B565-52FE4A17F783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134F2C89-5A5B-4E6D-B565-52FE4A17F783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134F2C89-5A5B-4E6D-B565-52FE4A17F783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

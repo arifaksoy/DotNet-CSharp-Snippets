@@ -1,4 +1,8 @@
-﻿public class Calculator
+﻿Calculator calc = new SafeCalculator();
+Console.WriteLine(calc.SquareRoot(-4)); // Temel sınıfta çalışırken, alt sınıfta patlar!
+
+//wrong
+public class Calculator
 {
     public virtual int SquareRoot(int number)
     {
@@ -18,5 +22,15 @@ public class SafeCalculator : Calculator
     }
 }
 
-Calculator calc = new SafeCalculator();
-Console.WriteLine(calc.SquareRoot(-4)); // Temel sınıfta çalışırken, alt sınıfta patlar!
+//correct
+
+public class SafeCalculator2 : Calculator
+{
+    public override int SquareRoot(int number)
+    {
+        return number < 0 ? 0 : base.SquareRoot(number); // Alternatif bir çözüm sunuyor, ama kısıtlamıyor.
+    }
+}
+
+
+
